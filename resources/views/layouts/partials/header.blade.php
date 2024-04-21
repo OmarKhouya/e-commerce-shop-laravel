@@ -1,18 +1,18 @@
 <nav class="navbar sticky-top" style="background-color: #FFECD6;">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="{{ asset('images/electro ka.png') }}" style="width:6rem!important" />
             {{-- Electromenager Ka --}}</a>
-        {{-- <form class="d-flex" role="search">
+        <form class="d-lg-flex d-none w-50" role="search">
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="Search" aria-label="Search"
-                    style="border-color:#102C57">
-                <button class="btn" style="border: solid 1px #102C57" type="submit">Search</button>
+                    style="border-color:#102C57!important;background-color:#FFECD6">
+                <button class="btn btn-dark" style="background-color:#102C57!important;" type="submit">Search</button>
             </div>
-        </form> --}}
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+        </form>
+        <button class="navbar-toggler" style="border-color:#102C57!important;background-color:#FFECD6!important;color:#102C57!important" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
             aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="fas fa-bars"></span>
         </button>
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDarkNavbar"
             aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: #EADBC8">

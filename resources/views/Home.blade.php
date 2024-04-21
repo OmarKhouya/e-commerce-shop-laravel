@@ -51,18 +51,18 @@
         $comments = [
             [
                 'author' => 'El garh',
-                'comment' => 'Good Service and the products are very good,',
+                'comment' => 'lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, quae. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
                 'profile' => 'profile1.png',
             ],
             [
                 'author' => 'Omar ka',
-                'comment' => '',
+                'comment' => 'lorem ipsum dolor sit amet consectetur adipisicing elit.',
                 'profile' => 'profile2.png',
             ],
             [
-                'author' => 'El garh',
-                'comment' => 'Good product',
-                'profile' => 'profile1.png',
+                'author' => 'Khouya',
+                'comment' => 'lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                'profile' => 'profile3.png',
             ],
         ];
     @endphp
@@ -135,19 +135,12 @@
         <div class="container">
             <h1>Our Customers said some truths!</h1>
             <div class="row d-flex justify-content-around mt-3 py-3">
-                <div class="col-md-6 col-lg-4">
-                    <x-customer-comments-card />
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <x-customer-comments-card />
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <x-customer-comments-card />
-                </div>
+                @foreach($comments as $comment)
+                    <div class="col-md-6 col-lg-4">
+                        <x-customer-comments-card :comment="$comment" />
+                    </div>
+                @endforeach
             </div>
-        </div>
-        </div>
-
         </div>
     </section>
 @endsection

@@ -1,19 +1,15 @@
-
+@props(['comment'])
   <div class="d-flex flex-start mb-4">
     <img class="rounded-circle shadow-1-strong me-3"
-      src="{{asset('images/profile1.png')}}" alt="avatar" width="65"
+      src="{{asset('images/'.$comment['profile'])}}" alt="avatar" width="65"
       height="65" />
     <div class="card w-100">
       <div class="card-body p-4">
         <div class="">
-          <h5>Johny Cash</h5>
+          <h5>{{$comment['author']}}</h5>
           <p class="small">3 hours ago</p>
           <p>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-            ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus
-            viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-            Donec lacinia congue felis in faucibus ras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis.
+            {{$comment['comment']}}
           </p>
 
           {{-- <div class="d-flex justify-content-between align-items-center">
