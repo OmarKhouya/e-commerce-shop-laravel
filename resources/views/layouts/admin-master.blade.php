@@ -33,13 +33,13 @@
             -webkit-box-shadow: inset 0 0 100px rgb(84, 83, 83);
         }
     </style>
-    <title>Electromenager Ka | @yield('title')</title>
+    <title>Admin| @yield('title')</title>
 </head>
 
 <body>
-    @include('layouts.partials.header')
+    @include('layouts.partials.admin.header')
     @yield('content')
-    @include('layouts.partials.footer')
+    @include('layouts.partials.admin.footer')
 </body>
 
 </html>

@@ -11,9 +11,9 @@
     <i class="fa-solid fa-star" style="color: gold"></i>
     @endfor
     @if ($halfStar)
-        <i class="fa-solid fa-star-half"></i>
+        <i class="fa-solid fa-star-half" style="color: gold"></i>
     @endif
     @for ($i = 0; $i < $emptyStars; $i++)
-        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star" style="color: gold"></i>
     @endfor
 </div>

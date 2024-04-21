@@ -72,5 +72,11 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
+    
+    'public' => [
+        'driver' => 'local',
+        'root' => public_path(), // This will set the root directory to the public directory
+        'url' => env('APP_URL').'/storage',
+        'visibility' => 'public',
+    ],
 ];

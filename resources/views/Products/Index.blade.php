@@ -9,7 +9,7 @@
                 @foreach ($products as $product)
                     <div class="col-lg-4 col-md-6 col-sm-12 my-2">
                         <div class="card m-auto" style="width: 18rem;">
-                            <img src="{{ $product->Thumbnail }}" class="card-img-top" alt="...">
+                            <img src="images/uploads/{{ $product->Thumbnail   }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-center">{{ $product->Name }}</h5>
                                 <p class="card-text text-center">
@@ -27,7 +27,7 @@
                     </div>
                 @endforeach
             </div>
-            {{ $products->links() }}
+            {{ $products->onEachSide(0)->links() }}
         </div>
     </section>
 @endsection

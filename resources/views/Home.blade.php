@@ -86,7 +86,7 @@
                 </div>
                 <div class="col-md m-auto">
                     <h1 class="p-3 text-center">
-                        "Discover our latest promotions!"
+                        "Discover our latest <a href="/products" class="text-dark">promotions!</a>"
                     </h1>
                 </div>
             </div>
@@ -94,7 +94,7 @@
     </section>
     <section style="background-color: #3559E0" class="py-3 text-white">
         <div class="container">
-            <h1>Find out our latest Listings!</h1>
+            <h1>Find out our latest <a href="/products" class="text-white">Listings!</a></h1>
             <div class="row pt-3">
                 @foreach ($products as $product)
                     {{-- @dump($product) --}}
@@ -122,7 +122,7 @@
     </section>
     <section style="background-color: #102C57" class="py-3 text-white">
         <div class="container">
-            <h1>Our best selling products for the month!</h1>
+            <h1>Our best selling <a href="/products" class="text-white">products</a> for the month!</h1>
             <div class="row pt-3">
                 @foreach ($products as $product)
                     {{-- @dump($product) --}}
