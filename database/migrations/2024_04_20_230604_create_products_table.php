@@ -19,11 +19,9 @@ return new class extends Migration
             $table->integer('Quantity');
             $table->string('Category');
             $table->string('Thumbnail');
-            $table->boolean('Available');
             $table->string('Rating');
             $table->string('Review');
             $table->string('Brand');
-            $table->string('relatedProducts');
             $table->timestamps();
         });
     }

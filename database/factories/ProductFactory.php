@@ -23,14 +23,12 @@ class ProductFactory extends Factory
             "Quantity" => fake()->numberBetween(1, 100),
             "Category" => fake()->word(),
             "Thumbnail" => fake()->imageUrl(),
-            "Available" => fake()->boolean(),
             "Image1" => fake()->imageUrl(),
             "Image2" => fake()->imageUrl(),
             "Image3" => fake()->imageUrl(),
             "Rating" => fake()->numberBetween(1, 5),
             "Review" => fake()->text(),
             "Brand" => fake()->word(),
-            "relatedProducts" => fake()->word(),
         ];
     }
 }

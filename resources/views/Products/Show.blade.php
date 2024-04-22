@@ -3,11 +3,6 @@
 @section('content')
     <section class="py-5" style="background-color: #FEFAF6">
         <div class="container">
-            <form action="{{ route('products.destroy', $product->id) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger" type="submit">delete</button>
-            </form>
             <div class="row gx-5">
                 <aside class="col-lg-6">
                     <div id="bigImageContainer" class="border rounded-4 mb-3 d-flex justify-content-center">

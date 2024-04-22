@@ -37,7 +37,6 @@ class ProductController extends Controller
             'Quantity' => ['required', 'numeric'],
             'Category' => ['required', 'string'],
             'Thumbnail' => ['required', 'image'],
-            'relatedProducts' => ['required', 'string'],
             'Image1' => ['required', 'image'],
             'Image2' => ['required', 'image'],
             'Image3' => ['required', 'image'],
@@ -55,23 +54,23 @@ class ProductController extends Controller
         $product = new Product();
 
         $ThumbnailName = '';
-        if ($image = $request->file('Thumbnail')){
-            $ThumbnailName = time().'-'.$image->getClientOriginalName();
+        if ($image = $request->file('Thumbnail')) {
+            $ThumbnailName = time() . '-' . $image->getClientOriginalName();
             $image->move('images/uploads', $ThumbnailName);
         }
         $Image1Name = '';
-        if ($image = $request->file('Image1')){
-            $Image1Name = time().'-'.$image->getClientOriginalName();
+        if ($image = $request->file('Image1')) {
+            $Image1Name = time() . '-' . $image->getClientOriginalName();
             $image->move('images/uploads', $Image1Name);
         }
         $Image2Name = '';
-        if ($image = $request->file('Image2')){
-            $Image2Name = time().'-'.$image->getClientOriginalName();
+        if ($image = $request->file('Image2')) {
+            $Image2Name = time() . '-' . $image->getClientOriginalName();
             $image->move('images/uploads', $Image2Name);
         }
         $Image3Name = '';
-        if ($image = $request->file('Image3')){
-            $Image3Name = time().'-'.$image->getClientOriginalName();
+        if ($image = $request->file('Image3')) {
+            $Image3Name = time() . '-' . $image->getClientOriginalName();
             $image->move('images/uploads', $Image3Name);
         }
 
@@ -84,10 +83,8 @@ class ProductController extends Controller
         $product->image1 = $Image1Name;
         $product->image2 = $Image2Name;
         $product->image3 = $Image3Name;
-        $product->available = $request->has('Available') ? true : false;
         $product->rating = $request->input('Rating');
         $product->review = $request->input('Review');
-        $product->relatedProducts = $request->input('relatedProducts');
         $product->brand = $request->input('Brand');
         $product->save();
 
@@ -108,7 +105,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view("Products.Edit", compact('product'));
     }
 
     /**
@@ -116,8 +113,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        
+        $product->fill($request->all());
+
+        if ($product->isDirty()) {
+            $product->save();
+        }
+
+        return redirect("/admin");
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -125,6 +130,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect("/products");
+        return redirect("/admin");
     }
 }

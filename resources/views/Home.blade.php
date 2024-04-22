@@ -2,52 +2,7 @@
 @section('title', 'Home')
 @section('content')
     @php
-        $products = [
-            [
-                'id' => 1,
-                'title' => 'Samsung 32 5300 TV SMART',
-                'description' => 'Samsung smart tv',
-                'price' => "$3000",
-                'image' => '20230718_211337.jpg',
-                'rating' => 5,
-                'category' => 'Smart TV',
-                'stock' => 'In Stock',
-                'brand' => 'Samsung',
-            ],
-            [
-                'id' => 1,
-                'title' => 'Samsung 32 5300 TV SMART',
-                'description' => 'Samsung smart tv',
-                'price' => "$3000",
-                'image' => '20230718_211337.jpg',
-                'rating' => 5,
-                'category' => 'Smart TV',
-                'stock' => 'In Stock',
-                'brand' => 'Samsung',
-            ],
-            [
-                'id' => 1,
-                'title' => 'Samsung 32 5300 TV SMART',
-                'description' => 'Samsung smart tv',
-                'price' => "$3000",
-                'image' => '20230718_211337.jpg',
-                'rating' => 5,
-                'category' => 'Smart TV',
-                'stock' => 'In Stock',
-                'brand' => 'Samsung',
-            ],
-            [
-                'id' => 2,
-                'title' => 'Iphone 13 ',
-                'description' => 'Iphone smart phone',
-                'price' => "$1500",
-                'image' => '20230818_094649.jpg',
-                'rating' => 4.5,
-                'category' => 'Smart phone',
-                'stock' => 'In Stock',
-                'brand' => 'Apple',
-            ],
-        ];
+
         $comments = [
             [
                 'author' => 'El garh',
@@ -96,9 +51,9 @@
         <div class="container">
             <h1>Find out our latest <a href="/products" class="text-white">Listings!</a></h1>
             <div class="row pt-3">
-                @foreach ($products as $product)
-                    {{-- @dump($product) --}}
-                    <x-products-card :product="$product" />
+                @foreach ($latestLisings as $listing)
+                    {{-- @dump($listing['Thumbnail']) --}}
+                    <x-products-card :product="$listing" />
                 @endforeach
             </div>
         </div>
@@ -124,8 +79,7 @@
         <div class="container">
             <h1>Our best selling <a href="/products" class="text-white">products</a> for the month!</h1>
             <div class="row pt-3">
-                @foreach ($products as $product)
-                    {{-- @dump($product) --}}
+                @foreach ($bestSellings as $product)
                     <x-products-card :product="$product" />
                 @endforeach
             </div>

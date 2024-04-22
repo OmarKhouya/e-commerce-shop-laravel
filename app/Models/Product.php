@@ -16,13 +16,11 @@ class Product extends Model
         'Quantity',
         'Category',
         'Thumbnail',
-        'Available',
         'Image1',
         'Image2',
         'Image3',
         'Rating',
         'Review',
         'Brand',
-        'relatedProducts',
     ];
 }
