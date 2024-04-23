@@ -17,8 +17,33 @@
             <li class="border-bottom border-dark p-3">
                 <a class="nav-link text-dark" href="{{ route('products.index') }}">Products</a>
             </li>
+            <li class="border-bottom border-dark p-3">
+                <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
+            </li>
+            <li class="border-bottom border-dark p-3">
+
+            </li>
         </ul>
-        <button class="navbar-toggler d-none d-sm-block" style="border-color:#102C57!important;background-color:#FFECD6!important;color:#102C57!important" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+
+       <div class="d-flex ">
+        <div class="btn-group me-3">
+            <button class="dropdown-toggle nav-link text-dark" type="button" data-bs-toggle="dropdown"
+                data-bs-auto-close="true" aria-expanded="false">
+                {{ Auth::user()->name }}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn dropdown-item">Log Out</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+         <button class="navbar-toggler"
+            style="border-color:#102C57!important;background-color:#FFECD6!important;color:#102C57!important"
+            type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
             aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
             <span class="fas fa-bars"></span>
         </button>
@@ -43,5 +68,6 @@
                 </ul>
             </div>
         </div>
+       </div>
     </div>
 </nav>

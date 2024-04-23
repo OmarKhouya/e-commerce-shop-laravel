@@ -2,6 +2,16 @@
 @section('title', 'About')
 @section('content')
     <section class="py-3 text-dark" style="background-color: #FEFAF6">
+        <div class="btn-group">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+              Default dropdown
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Menu item</a></li>
+              <li><a class="dropdown-item" href="#">Menu item</a></li>
+              <li><a class="dropdown-item" href="#">Menu item</a></li>
+            </ul>
+          </div>
         <div class="container">
             <h1 class="text-center my-3">About Us</h1>
             <div class="fs-5" style="text-align: justify">
