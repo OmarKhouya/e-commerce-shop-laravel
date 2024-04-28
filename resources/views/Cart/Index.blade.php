@@ -7,7 +7,7 @@
             <h1 class="mb-3">Cart</h1>
             @auth
                 <div class="table-responsive">
-                    <table class="table table-striped  table-hover">
+                    <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>Product</th>
@@ -17,9 +17,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cartItems as $item)
+                            @forelse ($cartItems as $item)
                                 <x-cart-items :item="$item" />
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="4">
+                                        <p class="text-center mt-3">Your cart is empty! <a href="{{ route('products.index') }}" class="text-dark">Continue shopping</a></p>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                         <tfoot>
                             <tr class="table-active">

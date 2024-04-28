@@ -1,14 +1,13 @@
 <header class="sticky-top">
     <nav class="navbar navbar-expand-lg" style="background-color: #FFECD6">
         <div class="container">
-            <a class="navbar-brand" href="/admin"><span class="d-lg-inline d-none">Electromenager Ka |</span></a>
             <div class="btn-group me-3">
                 <button class="dropdown-toggle nav-link text-dark" type="button" data-bs-toggle="dropdown"
                     data-bs-auto-close="true" aria-expanded="false">
+                    <i class="fa-solid fa-user me-2"></i>
                     <span class="d-none d-md-inline">
                         {{ Auth::user()->name }}
                     </span>
-                    <i class="fa-solid fa-user"></i>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
@@ -34,6 +33,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="color: black" href="{{route("products.create")}}">Add Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: black" href="{{route("admin.users")}}">Users</a>
                     </li>
                 </ul>
             </div>

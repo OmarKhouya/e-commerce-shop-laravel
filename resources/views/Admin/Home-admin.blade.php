@@ -27,8 +27,10 @@
                                 <td>{{ $product->Price }}</td>
                                 <td>{{ $product->Quantity }}</td>
                                 <td>{{ $product->Category }}</td>
-                                <td><img src="{{ asset('images/uploads/' . $product->Thumbnail) }}" alt=""
-                                        srcset="" width="100" height="100"></td>
+                                <td>
+                                    {{-- <img src="{{ asset('images/uploads/' . $product->Thumbnail) }}" alt="thumbnail" srcset="" width="100" height="100"> --}}
+                                    <img src="{{ $product->Thumbnail}}" alt="thumbnail" srcset="" width="100" height="100">
+                                    </td>
                                 <td>{{ $product->Rating }}</td>
                                 <td>{{ $product->Brand }}</td>
                                 <td>

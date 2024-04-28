@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
@@ -17,7 +16,14 @@ class AdminController extends Controller
                 return redirect()->route('home.index');
             }
         }
-        $products = Product::paginate(36);
-        return view('Admin.Home-admin', compact('products'));
+        $users = User::paginate(18);
+        return view('Admin.users', compact('users'));
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('admin.users');
     }
 }
