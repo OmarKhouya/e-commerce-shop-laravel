@@ -1,4 +1,4 @@
-@extends('layouts.admin-master')
+@extends('layouts.master')
 @section('title', 'Admin Dashboard')
 @section('content')
 <section class="py-5 text-dark" style="background-color: #FEFAF6">

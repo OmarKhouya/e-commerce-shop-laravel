@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -16,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(6);
+        $products = Product::paginate(18);
         return view('Products.Index', compact('products'));
     }
 
@@ -25,6 +26,12 @@ class ProductController extends Controller
      */
     public function create()
     {
+        if(Auth::check()){
+            $usertype = Auth::user()->usertype;
+            if($usertype == 'user'){
+                return redirect()->route('home.index');
+            }
+        }
         return view("Products.Create");
     }
 
@@ -33,6 +40,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        if(Auth::check()){
+            $usertype = Auth::user()->usertype;
+            if($usertype == 'user'){
+                return redirect()->route('home.index');
+            }
+        }
         $validator = Validator::make($request->all(), [
             'Name' => ['required', 'string', 'max:100'],
             'Description' => ['required', 'string'],
@@ -108,6 +121,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        if(Auth::check()){
+            $usertype = Auth::user()->usertype;
+            if($usertype == 'user'){
+                return redirect()->route('home.index');
+            }
+        }
         return view("Products.Edit", compact('product'));
     }
 
@@ -116,6 +135,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        if(Auth::check()){
+            $usertype = Auth::user()->usertype;
+            if($usertype == 'user'){
+                return redirect()->route('home.index');
+            }
+        }
 
         $product->fill($request->all());
 

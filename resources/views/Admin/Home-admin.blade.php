@@ -1,7 +1,7 @@
-@extends('layouts.admin-master')
+@extends('layouts.master')
 @section('title', 'Admin Dashboard')
 @section('content')
-    <section class="py-3 text-dark" style="background-color: #FEFAF6"> >
+    <section class="py-3 text-dark" style="background-color: #FEFAF6">
         <div class="container">
             <h1 class="mb-2">Products Dashboard</h1>
             <div class=" table-responsive">
@@ -33,8 +33,8 @@
                                 <td>{{ $product->Brand }}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ route('products.edit', $product->id) }}"
-                                            class="btn btn-primary me-2"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary me-2">
+                                            <i class="fa-regular fa-pen-to-square"></i></a>
                                         <form action="{{ route('products.destroy', $product->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')

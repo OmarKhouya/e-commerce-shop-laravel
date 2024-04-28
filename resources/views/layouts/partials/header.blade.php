@@ -12,10 +12,10 @@
         </form> --}}
         <ul class="list-unstyled d-lg-flex d-none">
             <li class="border-bottom border-dark p-3">
-                <a class="nav-link text-dark" href="{{ route('home.index') }}">Home</a>
+                <a class="nav-link text-dark" href="{{ route('home.index') }}"><i class="fa-solid fa-house"></i> Home</a>
             </li>
             <li class="border-bottom border-dark p-3">
-                <a class="nav-link text-dark" href="{{ route('products.index') }}">Products</a>
+                <a class="nav-link text-dark" href="{{ route('products.index') }}"><i class="fa-solid fa-store"></i> Products</a>
             </li>
             @guest
                 <li class="border-bottom border-dark p-3">
@@ -25,6 +25,12 @@
                     <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
                 </li>
             @endguest
+            @Auth
+                <li class="border-bottom border-dark p-3">
+                    <a class="nav-link text-dark" href="{{ route('cart.index') }}"><i
+                            class="fa-solid fa-cart-shopping me-2"></i>Cart</a>
+                </li>
+            @endAuth
         </ul>
 
         <div class="d-flex ">
@@ -62,7 +68,57 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="list-unstyled">
+                    <div class="d-flex flex-column justify-content-between h-100">
+                        <div>
+                            <a class="nav-link text-dark" href="{{ route('home.index') }}">Home</a>
+                            <a class="nav-link text-dark" href="{{ route('products.index') }}"><i class="fa-solid fa-store"></i> Products</a>
+                            <a class="nav-link text-dark" href="{{ route('home.about') }}">About</a>
+                            @Auth
+                                <a class="nav-link text-dark" href="{{ route('cart.index') }}"><i
+                                        class="fa-solid fa-cart-shopping me-2"></i>Cart</a>
+                            @endAuth
+                        </div>
+                        <div>
+                            @guest
+                                <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
+                                <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
+                            @endguest
+                            @Auth
+                                <div class="btn-group me-3">
+                                    {{--  <button class="dropdown-toggle nav-link text-dark" type="button" data-bs-toggle="dropdown"
+                                    data-bs-auto-close="true" aria-expanded="false">
+                                    <span class="d-none d-md-inline">
+
+                                    </span>
+                                    <i class="fa-solid fa-user"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
+                                    <li>
+
+                                    </li>
+                                </ul> --}}
+                                    <div class="btn-group dropup">
+                                        <button type="button" class=" btn" style="margin: 0rem 2rem!important;border: 1px solid black!important;background-color: none!important">
+                                            <a class="dropdown-item" href="{{ route('profile.edit') }}"> {{ Auth::user()->name }}</a>
+                                        </button>
+                                        <button type="button"
+                                            class="btn dropdown-toggle dropdown-toggle-split"
+                                            data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0rem 2rem!important;border: 1px solid black!important;background-color: none!important">
+                                            <span class="visually-hidden"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <button type="submit" class="btn dropdown-item">Log Out</button>
+                                            </form>
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endAuth
+                        </div>
+                    </div>
+                    {{--  <ul class="list-unstyled">
                         <li class="border-bottom border-dark p-3">
                             <a class="nav-link text-dark" href="{{ route('home.index') }}">Home</a>
                         </li>
@@ -72,7 +128,21 @@
                         <li class="border-bottom border-dark p-3">
                             <a class="nav-link text-dark" href="{{ route('home.about') }}">About</a>
                         </li>
-                    </ul>
+                        @guest
+                            <li class="border-bottom border-dark p-3">
+                                <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
+                            </li>
+                            <li class="border-bottom border-dark p-3">
+                                <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
+                            </li>
+                        @endguest
+                        @Auth
+                            <li class="border-bottom border-dark p-3">
+                                <a class="nav-link text-dark" href="{{ route('cart.index') }}"><i
+                                        class="fa-solid fa-cart-shopping me-2"></i>Cart</a>
+                            </li>
+                        @endAuth
+                    </ul> --}}
                 </div>
             </div>
         </div>

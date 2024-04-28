@@ -3,30 +3,48 @@
 @section('content')
     <section class="py-5" style="background-color: #FEFAF6">
         <div class="container">
-            <div class="row gx-5">
+            <div class="row gx-3">
                 <aside class="col-lg-6">
                     <div id="bigImageContainer" class="border rounded-4 mb-3 d-flex justify-content-center">
+                        {{-- <img id="bigImage" style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"
+                            src="{{ asset("images/uploads/$product->Thumbnail") }}" /> --}}
                         <img id="bigImage" style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"
-                        src="{{asset("images/uploads/$product->Thumbnail") }}"/>
+                            src="{{ $product->Thumbnail }}" />
                     </div>
+                    {{-- <div class="d-flex justify-content-center mb-3">
+                        <div data-fslightbox="mygallery" class="border mx-1 rounded-2" data-type="image">
+                            <img width="60" height="60" class="rounded-2"
+                                src="{{ asset("images/uploads/$product->Thumbnail") }}"onclick="updateBigImage(this)" />
+                        </div>
+                        <div data-fslightbox="mygallery" class="border mx-1 rounded-2" data-type="image">
+                            <img width="60" height="60" class="rounded-2"
+                                src="{{ asset("images/uploads/$product->Image1") }}"onclick="updateBigImage(this)" />
+                        </div>
+                        <div data-fslightbox="mygallery" class="border mx-1 rounded-2" data-type="image">
+                            <img width="60" height="60" class="rounded-2"
+                                src="{{ asset("images/uploads/$product->Image2") }}" onclick="updateBigImage(this)" />
+                        </div>
+                        <div data-fslightbox="mygallery" class="border mx-1 rounded-2" data-type="image">
+                            <img width="60" height="60" class="rounded-2"
+                                src="{{ asset("images/uploads/$product->Image1") }}" onclick="updateBigImage(this)" />
+                        </div>
+                    </div> --}}
                     <div class="d-flex justify-content-center mb-3">
                         <div data-fslightbox="mygallery" class="border mx-1 rounded-2" data-type="image">
                             <img width="60" height="60" class="rounded-2"
-                                src="{{asset("images/uploads/$product->Thumbnail") }}"onclick="updateBigImage(this)" />
+                                src="{{ $product->Thumbnail }}"onclick="updateBigImage(this)" />
                         </div>
                         <div data-fslightbox="mygallery" class="border mx-1 rounded-2" data-type="image">
                             <img width="60" height="60" class="rounded-2"
-                                src="{{asset("images/uploads/$product->Image1") }}"onclick="updateBigImage(this)" />
+                                src="{{ $product->Image1 }}"onclick="updateBigImage(this)" />
                         </div>
                         <div data-fslightbox="mygallery" class="border mx-1 rounded-2" data-type="image">
                             <img width="60" height="60" class="rounded-2"
-                                src="{{asset("images/uploads/$product->Image2") }}"
-                                onclick="updateBigImage(this)" />
+                                src="{{ $product->Image2 }}" onclick="updateBigImage(this)" />
                         </div>
                         <div data-fslightbox="mygallery" class="border mx-1 rounded-2" data-type="image">
                             <img width="60" height="60" class="rounded-2"
-                                src="{{asset("images/uploads/$product->Image1") }}"
-                                onclick="updateBigImage(this)" />
+                                src="{{ $product->Image1 }}" onclick="updateBigImage(this)" />
                         </div>
                     </div>
                 </aside>
@@ -87,10 +105,33 @@
                       </button>
                     </div>
                   </div> --}}
-                        {{-- <a href="#" class="btn btn-warning shadow-0"> Buy now </a> --}}
-                        <a href="#" class="btn btn-dark shadow-0" style="background-color: #102C57"> <i
-                                class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
-                        {{-- <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a> --}}
+
+                        @if (@isset(Auth::user()->id) && Auth::user()->usertype == 'admin')
+                            <span>
+
+                            </span>
+                        @else
+                            {{-- <a href="#" class="btn btn-warning shadow-0"> Buy now </a> --}}
+                            <form action="{{ route('cart.store', "product_id=$product->id") }}" method="POST">
+                                @csrf
+                                <div class="d-flex">
+                                    <div class="w-25">
+                                        <input type="number" name="quantity" id="quantity"
+                                            class="form-control " placeholder="quantity" max="{{ $product->Quantity }}" min="1">
+                                        @error('quantity')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="ms-3">
+                                        <button type="submit" class="btn btn-dark shadow-0"
+                                            style="background-color: #102C57">
+                                            <i class="me-1 fa fa-shopping-basket"></i> Add to cart</button>
+                                    </div>
+                                </div>
+                            </form>
+                            {{--
+                                <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a> --}}
+                        @endif
                     </div>
                 </main>
             </div>

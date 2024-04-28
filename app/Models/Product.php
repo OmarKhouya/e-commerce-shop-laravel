@@ -23,4 +23,8 @@ class Product extends Model
         'Review',
         'Brand',
     ];
+
+    public function user(){
+        return $this->belongsToMany(User::class, 'user_product');
+    }
 }
