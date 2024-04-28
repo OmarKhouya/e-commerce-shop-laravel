@@ -1,148 +1,155 @@
 <nav class="navbar sticky-top" style="background-color: #FFECD6;">
     <div class="container">
+        {{-- Logo --}}
         <a class="navbar-brand" href="/">
             <img src="{{ asset('images/electro ka.png') }}" style="width:6rem!important" />
-            {{-- Electromenager Ka --}}</a>
-        {{-- <form class="d-lg-flex d-none w-50" role="search">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search"
-                    style="border-color:#102C57!important;background-color:#FFECD6">
-                <button class="btn btn-dark" style="background-color:#102C57!important;" type="submit">Search</button>
-            </div>
-        </form> --}}
-        <ul class="list-unstyled d-lg-flex d-none">
-            <li class="border-bottom border-dark p-3">
-                <a class="nav-link text-dark" href="{{ route('home.index') }}"><i class="fa-solid fa-house"></i> Home</a>
-            </li>
-            <li class="border-bottom border-dark p-3">
-                <a class="nav-link text-dark" href="{{ route('products.index') }}"><i class="fa-solid fa-store"></i> Products</a>
-            </li>
-            @guest
-                <li class="border-bottom border-dark p-3">
-                    <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
+        </a>
+        {{-- header's center nav --}}
+        <div class="d-md-flex d-none">
+            <ul class="list-unstyled d-flex my-auto">
+                <li class="p-3">
+                    <a class="nav-link text-dark" href="{{ route('home.index') }} ">
+                        <i class="fa-solid fa-house"></i>
+                        Home
+                    </a>
                 </li>
-                <li class="border-bottom border-dark p-3">
-                    <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
+                <li class="p-3">
+                    <a class="nav-link text-dark" href="{{ route('products.index') }}">
+                        <i class="fa-solid fa-store"></i> Products
+                    </a>
                 </li>
-            @endguest
+                <li class="p-3  d-none d-lg-inline">
+                    <a class="nav-link" href="{{ route('home.about') }}"><i class="fa-solid fa-circle-info me-2"></i>
+                        About</a>
+                </li>
+                @Auth
+                    <li class="p-3">
+                        <a class="nav-link text-dark" href="{{ route('cart.index') }}">
+                            <i class="fa-solid fa-cart-shopping me-2"></i>Cart</a>
+                    </li>
+                @endAuth
+                @guest
+                    <li class="p-3">
+                        <div class="btn-group">
+                            <a class="nav-link text-dark" href="{{ route('login') }}">
+                                <i class="fa-solid fa-right-to-bracket"></i> Login
+                            </a>
+                            <button type="button" class="nav-link text-dark ms-2 dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden"></span>
+                            </button>
+                            <ul class="dropdown-menu p-3" style="background-color: #FFECD6">
+                                <li>
+                                    <a class="nav-link text-dark" href="{{ route('register') }}">
+                                        <i class="fa-solid fa-user-plus"></i> Register
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
+        </div>
+        <div class="d-flex  ">
+            {{-- user's name and buttons --}}
             @Auth
-                <li class="border-bottom border-dark p-3">
-                    <a class="nav-link text-dark" href="{{ route('cart.index') }}"><i
-                            class="fa-solid fa-cart-shopping me-2"></i>Cart</a>
-                </li>
-            @endAuth
-        </ul>
-
-        <div class="d-flex ">
-            @Auth
-                <div class="btn-group me-3">
-                    <button class="dropdown-toggle nav-link text-dark" type="button" data-bs-toggle="dropdown"
-                        data-bs-auto-close="true" aria-expanded="false">
-                        <span class="d-none d-md-inline">
-                            {{ Auth::user()->name }}
-                        </span>
-                        <i class="fa-solid fa-user"></i>
+                <div class="dropstart d-flex">
+                    <button type="button" class="px-3 py-1 nav-link dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden"></span>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
-                        <li>
+                    <ul class="dropdown-menu" style="background-color: #FFECD6">
+                        <li class="border-dark">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="btn dropdown-item">Log Out</button>
                             </form>
                         </li>
                     </ul>
+                    <div class="vr mx-3"></div>
+                    <button type="button" class="nav-link text-dark">
+                        <a class="nav-link " href="{{ route('profile.edit') }}">
+                            <span class="d-none d-md-inline me-2">
+                                {{ Auth::user()->name }}
+                            </span>
+                            <i class="fa-solid fa-user me-3"></i>
+                        </a>
+                    </button>
                 </div>
             @endAuth
-            <button class="navbar-toggler"
+            {{-- mobile menu --}}
+            <button class="navbar-toggler d-inline d-md-none ms-2"
                 style="border-color:#102C57!important;background-color:#FFECD6!important;color:#102C57!important"
                 type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
                 aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                 <span class="fas fa-bars"></span>
             </button>
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDarkNavbar"
-                aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: #EADBC8">
+                aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: #102C57">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                    <h5 class="offcanvas-title text-white" id="offcanvasDarkNavbarLabel">Menu</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
+                        aria-label="Close" style="background-color: aliceblue"></button>
                 </div>
-                <div class="offcanvas-body">
-                    <div class="d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <a class="nav-link text-dark" href="{{ route('home.index') }}">Home</a>
-                            <a class="nav-link text-dark" href="{{ route('products.index') }}"><i class="fa-solid fa-store"></i> Products</a>
-                            <a class="nav-link text-dark" href="{{ route('home.about') }}">About</a>
+                {{-- upper nav --}}
+                <div class="offcanvas-body d-flex flex-column justify-content-between">
+                    <div class="border border-white rounded p-3">
+                        <ul class="list-unstyled text-white">
+                            <li>
+                                <a class="nav-link" href="{{ route('home.index') }}"><i
+                                        class="fa-solid fa-house me-2"></i> Home</a>
+                            </li>
+                            <hr>
+                            <li>
+                                <a class="nav-link" href="{{ route('home.about') }}"><i
+                                        class="fa-solid fa-circle-info me-2"></i> About</a>
+                            </li>
+                            <hr>
                             @Auth
-                                <a class="nav-link text-dark" href="{{ route('cart.index') }}"><i
-                                        class="fa-solid fa-cart-shopping me-2"></i>Cart</a>
+                                <li>
+                                    <a class="nav-link" href="{{ route('cart.index') }}">
+                                        <i class="fa-solid fa-cart-shopping me-2"></i> Cart</a>
+                                </li>
+                                <hr>
                             @endAuth
-                        </div>
-                        <div>
-                            @guest
-                                <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
-                                <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
-                            @endguest
-                            @Auth
-                                <div class="btn-group me-3">
-                                    {{--  <button class="dropdown-toggle nav-link text-dark" type="button" data-bs-toggle="dropdown"
-                                    data-bs-auto-close="true" aria-expanded="false">
-                                    <span class="d-none d-md-inline">
-
-                                    </span>
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
-                                    <li>
-
-                                    </li>
-                                </ul> --}}
-                                    <div class="btn-group dropup">
-                                        <button type="button" class=" btn" style="margin: 0rem 2rem!important;border: 1px solid black!important;background-color: none!important">
-                                            <a class="dropdown-item" href="{{ route('profile.edit') }}"> {{ Auth::user()->name }}</a>
-                                        </button>
-                                        <button type="button"
-                                            class="btn dropdown-toggle dropdown-toggle-split"
-                                            data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0rem 2rem!important;border: 1px solid black!important;background-color: none!important">
-                                            <span class="visually-hidden"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <form method="POST" action="{{ route('logout') }}">
-                                                @csrf
-                                                <button type="submit" class="btn dropdown-item">Log Out</button>
-                                            </form>
-                                        </ul>
-                                    </div>
-                                </div>
-                            @endAuth
-                        </div>
+                            <li>
+                                <a class="nav-link" href="{{ route('products.index') }}">
+                                    <i class="fa-solid fa-store me-2"></i> Products
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    {{--  <ul class="list-unstyled">
-                        <li class="border-bottom border-dark p-3">
-                            <a class="nav-link text-dark" href="{{ route('home.index') }}">Home</a>
-                        </li>
-                        <li class="border-bottom border-dark p-3">
-                            <a class="nav-link text-dark" href="{{ route('products.index') }}">Products</a>
-                        </li>
-                        <li class="border-bottom border-dark p-3">
-                            <a class="nav-link text-dark" href="{{ route('home.about') }}">About</a>
-                        </li>
-                        @guest
-                            <li class="border-bottom border-dark p-3">
-                                <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
-                            </li>
-                            <li class="border-bottom border-dark p-3">
-                                <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
-                            </li>
-                        @endguest
+                    {{-- lower nav --}}
+                    <div class="border border-white  rounded p-3 fs-5 d-flex justify-content-between">
                         @Auth
-                            <li class="border-bottom border-dark p-3">
-                                <a class="nav-link text-dark" href="{{ route('cart.index') }}"><i
-                                        class="fa-solid fa-cart-shopping me-2"></i>Cart</a>
-                            </li>
+                            <a href="{{ route('profile.edit') }}" class="d-flex text-decoration-none text-white">
+                                <div class="my-auto pt-1">
+                                    <i class="fa-regular fa-circle-user"></i>
+                                </div>
+                                <div class="my-auto ms-3">
+                                    {{ Auth::user()->name }}
+                                </div>
+                            </a>
+                            <div class="vr text-white"></div>
+                            <div class="my-auto pt-1">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <button type="submit" class="nav-link text-white"><i
+                                            class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                                </form>
+                            </div>
                         @endAuth
-                    </ul> --}}
+                        @guest
+                            <a class="nav-link text-white" href="{{ route('login') }}">
+                                <i class="fa-solid fa-right-to-bracket"></i> Login
+                            </a>
+                            <div class="vr text-white"></div>
+                            <a class="nav-link text-white" href="{{ route('register') }}">
+                                <i class="fa-solid fa-user-plus"></i> Register
+                            </a>
+                        @endguest
+                    </div>
                 </div>
             </div>
         </div>
