@@ -85,7 +85,7 @@
                         </p>
 
                         <div class="row">
-                            <dt class="col-3">Type:</dt>
+                            <dt class="col-3">Category</dt>
                             <dd class="col-9">{{ $product->Category }}</dd>
 
                             <dt class="col-3">Brand</dt>

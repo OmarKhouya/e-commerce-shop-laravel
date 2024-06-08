@@ -33,6 +33,19 @@
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 100px rgb(84, 83, 83);
         }
+
+        .products-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .products-list::-webkit-scrollbar-track {
+            display: none;
+        }
+
+        .products-list::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 100px rgb(84, 83, 83);
+        }
     </style>
     <title>Electromenager Ka | @yield('title')</title>
 </head>

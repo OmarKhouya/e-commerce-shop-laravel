@@ -9,26 +9,50 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware(['auth'])->except(['index', 'show']);
     }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(18);
+        $query = Product::query();
+
+        // Filtering
+        if ($request->has('category') && $request->category != '') {
+            $query->where('category', $request->category);
+        }
+        if ($request->has('brand') && $request->brand != '') {
+            $query->where('brand', $request->brand);
+        }
+        if ($request->has('min_price') && $request->min_price != '') {
+            $query->where('price', '>=', $request->min_price);
+        }
+        if ($request->has('max_price') && $request->max_price != '') {
+            $query->where('price', '<=', $request->max_price);
+        }
+
+        // Searching
+        if ($request->has('search') && $request->search != '') {
+            $query->where('name', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%');
+        }
+
+        $products = $query->paginate(38);
         return view('Products.Index', compact('products'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $usertype = Auth::user()->usertype;
-            if($usertype == 'user'){
+            if ($usertype == 'user') {
                 return redirect()->route('home.index');
             }
         }
@@ -40,9 +64,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $usertype = Auth::user()->usertype;
-            if($usertype == 'user'){
+            if ($usertype == 'user') {
                 return redirect()->route('home.index');
             }
         }
@@ -121,9 +145,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $usertype = Auth::user()->usertype;
-            if($usertype == 'user'){
+            if ($usertype == 'user') {
                 return redirect()->route('home.index');
             }
         }
@@ -135,9 +159,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $usertype = Auth::user()->usertype;
-            if($usertype == 'user'){
+            if ($usertype == 'user') {
                 return redirect()->route('home.index');
             }
         }
